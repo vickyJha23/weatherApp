@@ -1,4 +1,4 @@
-//  console.log("Har Har Mahadev");
+//console.log("Har Har Mahadev");
 const apiKey = '217cb8afc2f5e00594ca67d8afd9b950';
 const apiUrl = 'https://api.openweathermap.org/data/2.5/weather?'
 const cityName = document.querySelector(".cityName");
@@ -11,13 +11,10 @@ const maxTemp = document.querySelector(".max-temp");
 const wind = document.querySelector(".wind-value");
 const alrt = document.querySelector(".alert");
 const titleHeading = document.querySelector(".title > h3");
-const futureWeatherItem = document.querySelectorAll(".future-weather-item");
-console.log(futureWeatherItem);
-window.addEventListener("load", () => {
+const futureWeatherItem = document.querySelector(".future-weather-item");
+window.addEventListener("load", () => { 
       setToDefault();
 })
-
-
 searchBtn.addEventListener("click", () => {
      let location = input.value;
      if(location){
@@ -30,7 +27,7 @@ searchBtn.addEventListener("click", () => {
 });
 
 function fetchWeather(location){
-    const url = `https://api.weatherbit.io/v2.0/current?q=${location}&key=${apiKey}&include=minutely`;
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${apiKey}&units=metric`;
     fetch(url)
         .then((response) => {
              if(response.ok){
@@ -41,7 +38,6 @@ function fetchWeather(location){
              };
         })
         .then(data => {
-             console.log(data);
              cityName.textContent = data.name;
              temp.textContent = (data.main.temp).toFixed(1) + "°";
              minTemp.textContent = (data.main.temp_min).toFixed(1) + "°";
@@ -52,11 +48,18 @@ function fetchWeather(location){
              const dt = dateObj.toDateString();
              date.innerHTML = dt;
              titleHeading.textContent = data.name;
+             if(cityName.textContent.length > 6){
+                  cityName.style.fontSize = "20px";
+             }
+             const sunsetTimemilliSecond = data.sys.sunset;
+             const sunriseTimemilliSecond = data.sys.sunrise;
+             const sunrise = new Date(sunriseTimemilliSecond * 1000).toLocaleTimeString();
+             const sunset = new Date(sunsetTimemilliSecond * 1000).toLocaleTimeString();
              const fday = `
-                <p class="d-date"></p>
-                <p class="f-temp"></p>
-             `  ;
-                       
+                <p class="d-date">${data.weather[0].description}</p>
+                <p class="f-temp"><img src="http://openweathermap.org/img/w/${data.weather[0].icon}.png"></p>
+                <p class="sun"><span>Sunrise: ${sunrise}</span> <span>Sunset: ${sunset}</span></p>`;
+             futureWeatherItem.innerHTML = fday;              
         })
         .catch(error => {
             console.log("There was a problem with the fetch operation:", error);     

@@ -11,7 +11,7 @@ body{
 #weather{
      width: 90vw;
      height: 100vh;
-     background-color: rgb(17, 166, 226);
+     background: url('https://img.freepik.com/free-photo/painting-mountain-lake-with-mountain-background_188544-9126.jpg?size=626&ext=jpg&ga=GA1.1.1700460183.1709337600&semt=sph') top center/ cover no-repeat;
      max-width: 450px;
      margin: 0 auto;
      position: relative;
@@ -47,12 +47,12 @@ body{
     width: 100%;
     height: 100%;
      display: grid;
-     grid-template-rows: repeat(5, 1fr);
+     grid-template-rows: repeat(4, 1fr);
      position: relative;
      overflow: hidden;
 }
 .weather-item:first-child{
-     grid-row: 1 / span 3;
+     grid-row: 1 / span 2;
 }
 .upperCircle{
      width: 450px;
@@ -68,7 +68,7 @@ body{
 .header{
      width: 350px;;
      position: absolute;
-     top: 40%;
+     top: 46%;
      left: 15%;
      display: flex;
      justify-content: space-between;
@@ -120,8 +120,8 @@ input::placeholder{
 }
 .date{
      position: absolute;
-     top: 55%;
-     left: 15%;
+     top: 57%;
+     left: 16%;
      color: #fff;
      font-weight: 500;
      letter-spacing: 3px;
@@ -129,11 +129,11 @@ input::placeholder{
 }
 .lowerCircle{
      position: absolute;
-     top: 45%;
-     left: 50%;
+     top: 35%;
+     left: 57%;
      transform: translate(-50%, -50%);
-     width: 200px;
-     height: 200px;
+     width: 250px;
+     height: 250px;
      background: linear-gradient( to bottom, yellow 0%, orange 100%);
      z-index: 3;
      border-radius: 50%;
@@ -149,28 +149,33 @@ input::placeholder{
      justify-content: center;
      gap: 10px;
      align-items: center;
-     text-align: center;
+     /* text-align: center; */
      color: #fff;
-     font-size: 0.75rem;
+     font-size: 1rem;
      font-weight: 600;
 }
 .temp{
      color: #fff;
-     font-size: 2.5rem;
+     font-size: 4.5rem;
      font-weight: 500;
 }
 .weather-item:nth-child(2){
      margin-top: 2rem;
+     display: flex;
+     justify-content: center;
+     align-items: center;
 }
 .todays-weather{
      display: flex; 
-     justify-content: space-between;
+     justify-content: space-evenly;
      padding: 0 1rem;
      align-items: center;
      text-align: center;
      white-space: nowrap;
      overflow: auto;
+     flex: 1;
 }
+
 .todays-weather p{
     margin-bottom: 0.75rem;
     color: #fff;
@@ -191,15 +196,20 @@ input::placeholder{
 }
 
 .future-weather{
-     display: flex;
-     gap: 10px;
-     justify-content: space-between;
-     align-items: center;
      padding: 0 1rem;
      color: #fff;
 }
 .future-weather-item p{
     margin-bottom: 0.75rem;
     text-align: center;
-    text-transform: capitalize;
+    letter-spacing: 3px;
+}
+.d-date{
+     text-transform: capitalize;
+}
+.sun{
+     background: linear-gradient(to right, rgb(244, 244, 124) 0% ,red 50%, orange 100%);
+     padding: 0.20rem 0.5rem;
+     white-space: nowrap;
+     border-radius: 0.5rem;
 }
